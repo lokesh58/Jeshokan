@@ -22,13 +22,13 @@ namespace Hash {
         }
     }
 
-    inline Key getHashKey(int piece, int sq) {
+    Key getHashKey(int piece, int sq) {
         assert(0 <= piece && piece < _numPieces);
         assert(0 <= sq && sq < _numSquares);
         return hashKeys[piece][sq];
     }
 
-    inline Key getSideKey() {
+    Key getSideKey() {
         return _sideKey;
     }
 }
