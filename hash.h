@@ -6,6 +6,7 @@
 namespace Hash {
     void init();
     Key hashKey(int piece, int sq);
+    Key castleKey(int rights);
     Key sideKey();
 }
 

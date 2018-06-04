@@ -8,6 +8,7 @@ namespace Hash {
     std::uniform_int_distribution<Key> _rand64(0, 0XFFFFFFFFFFFFFFFFULL);
 
     Key _hashKeys[_numPieces][_numSquares];
+    Key _castleKeys[ALL_CASTLING+1];
     Key _sideKey;
 
     void init() {
@@ -18,6 +19,9 @@ namespace Hash {
                     _hashKeys[piece][sq] = _rand64(_engine);
                 }
             }
+            for (int rights = 0; rights <= ALL_CASTLING; ++rights) {
+                _castleKeys[rights] = _rand64(_engine);
+            }
             _sideKey = _rand64(_engine);
         }
     }
@@ -26,6 +30,11 @@ namespace Hash {
         assert(0 <= piece && piece < _numPieces);
         assert(0 <= sq && sq < _numSquares);
         return _hashKeys[piece][sq];
+    }
+
+    Key castleKey(int rights) {
+        assert(0 <= rights && rights <= ALL_CASTLING);
+        return _castleKeys[rights];
     }
 
     Key sideKey() {
