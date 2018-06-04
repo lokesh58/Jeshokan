@@ -3,6 +3,8 @@
 
 using Key = unsigned long long;
 
+constexpr int MAX_DEPTH = 127;
+
 constexpr int _numPieces = 13;
 enum Pieces {
     wP, wR, wN, wB, wQ, wK,
@@ -26,6 +28,13 @@ enum Squares {
 
 enum Side {
     WHITE, BLACK, NONE
+};
+
+enum CastlingRights {
+    WHITE_OO = 1, WHITE_OOO = 2, BLACK_OO = 4, BLACK_OOO = 8,
+    WHITE_ALL = (WHITE_OO|WHITE_OOO),
+    BLACK_ALL = (BLACK_OO|BLACK_OOO),
+    ALL_CASTLING = (WHITE_ALL|BLACK_ALL)
 };
 
 #endif // TYPES_H
