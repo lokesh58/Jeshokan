@@ -8,10 +8,10 @@ class Position {
         Position();
         ~Position();
 
-        int getPiece(int sq) const;
-        int getSide() const;
-        int getEnPassSq() const;
-        Key getPosKey() const;
+        int pieceAt(int sq) const;
+        int side() const;
+        int enPassSq() const;
+        Key posKey() const;
 
     private:
         Key __generatePosKey() const;

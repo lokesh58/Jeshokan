@@ -5,8 +5,8 @@
 
 namespace Hash {
     void init();
-    Key getHashKey(int piece, int sq);
-    Key getSideKey();
+    Key hashKey(int piece, int sq);
+    Key sideKey();
 }
 
 #endif // HASH_H

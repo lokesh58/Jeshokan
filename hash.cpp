@@ -4,10 +4,10 @@
 
 namespace Hash {
     bool _init = false;
-    std::mt19937_64 engine;
-    std::uniform_int_distribution<Key> rand64(0, 0XFFFFFFFFFFFFFFFFULL);
+    std::mt19937_64 _engine;
+    std::uniform_int_distribution<Key> _rand64(0, 0XFFFFFFFFFFFFFFFFULL);
 
-    Key hashKeys[_numPieces][_numSquares];
+    Key _hashKeys[_numPieces][_numSquares];
     Key _sideKey;
 
     void init() {
@@ -15,20 +15,20 @@ namespace Hash {
             _init = true;
             for (int piece = 0; piece < _numPieces; ++piece) {
                 for (int sq = 0; sq < _numSquares; ++sq) {
-                    hashKeys[piece][sq] = rand64(engine);
+                    _hashKeys[piece][sq] = _rand64(_engine);
                 }
             }
-            _sideKey = rand64(engine);
+            _sideKey = _rand64(_engine);
         }
     }
 
-    Key getHashKey(int piece, int sq) {
+    Key hashKey(int piece, int sq) {
         assert(0 <= piece && piece < _numPieces);
         assert(0 <= sq && sq < _numSquares);
-        return hashKeys[piece][sq];
+        return _hashKeys[piece][sq];
     }
 
-    Key getSideKey() {
+    Key sideKey() {
         return _sideKey;
     }
 }

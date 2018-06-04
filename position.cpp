@@ -13,20 +13,20 @@ Position::~Position() {
     //dtor
 }
 
-inline int Position::getPiece(int sq) const {
+inline int Position::pieceAt(int sq) const {
     assert(0 <= sq && sq < _numBoardSq);
     return _board[sq];
 }
 
-inline int Position::getSide() const {
+inline int Position::side() const {
     return _side;
 }
 
-inline int Position::getEnPassSq() const {
+inline int Position::enPassSq() const {
     return _enPassSq;
 }
 
-inline Key Position::getPosKey() const {
+inline Key Position::posKey() const {
     return _posKey;
 }
 
@@ -34,19 +34,19 @@ Key Position::__generatePosKey() const {
     Key k = 0;
 
     for (int sq = 0; sq < _numBoardSq; ++sq) {
-        int piece = getPiece(sq);
+        int piece = pieceAt(sq);
         if (piece != EMPTY) {
             assert(0 <= piece && piece < EMPTY);
-            k ^= Hash::getHashKey(piece, sq);
+            k ^= Hash::hashKey(piece, sq);
         }
     }
 
-    assert(0 <= getEnPassSq() && getEnPassSq() < _numSquares);
-    k ^= Hash::getHashKey(EMPTY, getEnPassSq());
+    assert(0 <= enPassSq() && enPassSq() < _numSquares);
+    k ^= Hash::hashKey(EMPTY, enPassSq());
 
-    assert(getSide() == WHITE || getSide() == BLACK);
-    if (getSide() == WHITE) {
-        k ^= Hash::getSideKey();
+    assert(side() == WHITE || side() == BLACK);
+    if (side() == WHITE) {
+        k ^= Hash::sideKey();
     }
 
     return k;
