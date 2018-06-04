@@ -32,7 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="debug.h" />
+		<Unit filename="hash.cpp" />
+		<Unit filename="hash.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="position.cpp" />
+		<Unit filename="position.h" />
+		<Unit filename="types.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
