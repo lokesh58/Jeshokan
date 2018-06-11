@@ -2,6 +2,9 @@
 #define POSITION_H
 
 #include "types.h"
+#include <string>
+
+const std::string startFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 class Position {
     public:
@@ -15,6 +18,8 @@ class Position {
         int castleRights() const;
         bool canCastle(int right) const;
         Key posKey() const;
+
+        Position& parseFEN(const std::string &fen);
 
     private:
         void addCastleRights(int right);
