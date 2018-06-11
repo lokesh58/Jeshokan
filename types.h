@@ -31,6 +31,7 @@ enum Side {
 };
 
 enum CastlingRights {
+    NO_CASTLING = 0,
     WHITE_OO = 1, WHITE_OOO = 2, BLACK_OO = 4, BLACK_OOO = 8,
     WHITE_ALL = (WHITE_OO|WHITE_OOO),
     BLACK_ALL = (BLACK_OO|BLACK_OOO),
