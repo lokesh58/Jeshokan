@@ -20,6 +20,7 @@ class Position {
         Key posKey() const;
 
         Position& parseFEN(const std::string &fen);
+        const Position& dispBoard() const;
 
     private:
         void addCastleRights(int right);
