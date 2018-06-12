@@ -177,7 +177,8 @@ const Position& Position::dispBoard() const {
     cout << "PosKey : " << hex << posKey() << dec << '\n'
          << "EnPassantSq : " << _square[enPassSq()] << '\n'
          << "Castling Rights : " << _castle[castleRights()] << '\n'
-         << "Side to move : " << _cside[side()] << endl;
+         << "Side to move : " << _cside[side()] << '\n'
+         << "Fifty Move Counter : " << fiftyMoveCounter() << endl;
 
     return *this;
 }
