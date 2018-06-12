@@ -1,6 +1,8 @@
 #include "position.h"
 #include "hash.h"
 #include "debug.h"
+#include <iostream>
+using namespace std;
 
 Position::Position() : _side(NONE), _enPassSq(NO_SQ), _fiftyMoveCounter(0),
                         _castleRights(0), _posKey(0), _historyCnt(0) {
@@ -43,7 +45,7 @@ inline Key Position::posKey() const {
     return _posKey;
 }
 
-Position& Position::parseFEN(const std::string &fen) {
+Position& Position::parseFEN(const string &fen) {
     //SET PIECES
     int currSq = H8;
     auto it = fen.cbegin();
@@ -91,6 +93,9 @@ Position& Position::parseFEN(const std::string &fen) {
                     break;
                 case 'P' :
                     _board[currSq--] = wP;
+                    break;
+                case '/' :
+                    assert(((currSq+1)&7) == 0);
                     break;
                 default :
                     assert(false);
@@ -165,7 +170,7 @@ Position& Position::parseFEN(const std::string &fen) {
 
 const Position& Position::dispBoard() const {
     for (int sq = A1; sq <= H8; ++sq) {
-        if (sq&7 == 0) cout << endl; //if sq is divisible by 8
+        if ((sq&7) == 0) cout << endl; //if sq is divisible by 8
         cout << pieceAt(sq) << ' ';
     }
     cout << endl;
