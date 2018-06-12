@@ -169,18 +169,15 @@ Position& Position::parseFEN(const string &fen) {
 }
 
 const Position& Position::dispBoard() const {
-    for (int sq = A1; sq <= H8; ++sq) {
-        if ((sq&7) == 0) cout << endl; //if sq is divisible by 8
-        cout << pieceAt(sq) << ' ';
+    for (int sq = H8; sq >= A1; --sq) {
+        cout << _piece[pieceAt(sq)] << ' ';
+        if (((sq)&7) == 0) cout << endl; //if sq is divisible by 8
     }
     cout << endl;
-    cout << "PosKey : " << posKey() << '\n'
-         << "EnPassantSq : " << enPassSq() << '\n'
-         << "Castling Rights : " << (canCastle(WHITE_OO) ? 'K' : '-')
-                                 << (canCastle(WHITE_OOO) ? 'Q' : '-')
-                                 << (canCastle(BLACK_OO) ? 'k' : '-')
-                                 << (canCastle(BLACK_OOO) ? 'q' : '-') << '\n'
-         << "Side to move : " << side() << endl;
+    cout << "PosKey : " << hex << posKey() << dec << '\n'
+         << "EnPassantSq : " << _square[enPassSq()] << '\n'
+         << "Castling Rights : " << _castle[castleRights()] << '\n'
+         << "Side to move : " << _cside[side()] << endl;
 
     return *this;
 }
